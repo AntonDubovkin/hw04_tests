@@ -1,14 +1,18 @@
 from django.contrib.auth import get_user_model
-
 from django.db import models
 
 User = get_user_model()
 
 
 class Group(models.Model):
-    title = models.CharField(verbose_name='Заголовок', max_length=200)
+    title = models.CharField(verbose_name='Заголовок',
+                             max_length=200,
+                             help_text='Заголовок группы'
+                             )
     slug = models.SlugField(max_length=200, unique=True)
-    description = models.TextField(verbose_name='Описание')
+    description = models.TextField(verbose_name='Описание',
+                                   help_text='Описание групы'
+                                   )
 
     def __str__(self):
         return self.title
@@ -45,7 +49,11 @@ class Post(models.Model):
         null=True,
         on_delete=models.SET_NULL,
     )
-
+    image = models.ImageField(
+        'Картинка',
+        upload_to='posts/',
+        blank=True
+    )
     def __str__(self):
         return self.text[:15]
 

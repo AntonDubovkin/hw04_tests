@@ -23,13 +23,14 @@ class PaginatorViewsTest(TestCase):
             slug='test-slug',
             description='test_description'
         )
-
-        for i in range(13):
-            cls.post = Post.objects.create(
-                text=f'test_post{i}',
-                group=cls.group,
-                author=cls.author
-            )
+        cls.posts = [
+            Post(
+                author=cls.author,
+                text=f'test_post',
+                group=cls.group
+            ) for i in range(1, 14)
+        ]
+        Post.objects.bulk_create(cls.posts)
 
         cls.templates = {
             1: reverse('posts:index'),
@@ -86,16 +87,16 @@ class PostsPagesTests(TestCase):
             reverse('posts:post_create'): 'posts/create_post.html',
             reverse('posts:group_list',
                     kwargs={'slug': f'{cls.group.slug}'}):
-                        'posts/group_list.html',
+                'posts/group_list.html',
             reverse('posts:profile',
                     kwargs={'username': f'{cls.author.username}'}):
-                        'posts/profile.html',
+                'posts/profile.html',
             reverse('posts:post_detail',
                     kwargs={'post_id': f'{cls.post.id}'}):
-                        'posts/post_detail.html',
+                'posts/post_detail.html',
             reverse('posts:post_edit',
                     kwargs={'post_id': f'{cls.post.id}'}):
-                        'posts/create_post.html',
+                'posts/create_post.html',
         }
 
         cls.form_fields = {
