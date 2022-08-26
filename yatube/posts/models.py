@@ -54,6 +54,7 @@ class Post(models.Model):
         upload_to='posts/',
         blank=True
     )
+
     def __str__(self):
         return self.text[:15]
 
