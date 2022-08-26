@@ -26,7 +26,7 @@ class PaginatorViewsTest(TestCase):
         cls.posts = [
             Post(
                 author=cls.author,
-                text=f'test_post',
+                text='test_post',
                 group=cls.group
             ) for i in range(1, 14)
         ]
@@ -85,18 +85,14 @@ class PostsPagesTests(TestCase):
         cls.templ_names = {
             reverse('posts:index'): 'posts/index.html',
             reverse('posts:post_create'): 'posts/create_post.html',
-            reverse('posts:group_list',
-                    kwargs={'slug': f'{cls.group.slug}'}):
-                'posts/group_list.html',
-            reverse('posts:profile',
-                    kwargs={'username': f'{cls.author.username}'}):
-                'posts/profile.html',
-            reverse('posts:post_detail',
-                    kwargs={'post_id': f'{cls.post.id}'}):
-                'posts/post_detail.html',
-            reverse('posts:post_edit',
-                    kwargs={'post_id': f'{cls.post.id}'}):
-                'posts/create_post.html',
+            reverse('posts:group_list', kwargs={'slug':
+                    f'{cls.group.slug}'}): 'posts/group_list.html',
+            reverse('posts:profile', kwargs={'username':
+                    f'{cls.author.username}'}): 'posts/profile.html',
+            reverse('posts:post_detail', kwargs={'post_id':
+                    f'{cls.post.id}'}): 'posts/post_detail.html',
+            reverse('posts:post_edit', kwargs={'post_id':
+                    f'{cls.post.id}'}): 'posts/create_post.html',
         }
 
         cls.form_fields = {
