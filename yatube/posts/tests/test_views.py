@@ -3,7 +3,7 @@ from django.test import Client, TestCase
 from django.urls import reverse
 from django import forms
 
-from ..models import Group, Post
+from posts.models import Group, Post
 
 TEST_OF_PAGI_1: int = 10
 TEST_OF_PAGI_2: int = 3
