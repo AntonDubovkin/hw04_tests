@@ -80,9 +80,6 @@ class PostFormTests(TestCase):
             data=form_data,
             follow=True
         )
-        self.assertRedirects(response, reverse(
-            'posts:post_detail',
-            kwargs={'post_id': f'{self.post.id}'}))
         self.assertEqual(response.status_code, HTTPStatus.OK)
         self.assertTrue(Post.objects.filter(
             group=self.group2.id,

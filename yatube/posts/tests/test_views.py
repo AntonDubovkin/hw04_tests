@@ -23,6 +23,7 @@ class PaginatorViewsTest(TestCase):
             slug='test-slug',
             description='test_description'
         )
+
         cls.posts = [
             Post(
                 author=cls.author,
@@ -85,14 +86,18 @@ class PostsPagesTests(TestCase):
         cls.templ_names = {
             reverse('posts:index'): 'posts/index.html',
             reverse('posts:post_create'): 'posts/create_post.html',
-            reverse('posts:group_list', kwargs={'slug':
-                    f'{cls.group.slug}'}): 'posts/group_list.html',
-            reverse('posts:profile', kwargs={'username':
-                    f'{cls.author.username}'}): 'posts/profile.html',
-            reverse('posts:post_detail', kwargs={'post_id':
-                    f'{cls.post.id}'}): 'posts/post_detail.html',
-            reverse('posts:post_edit', kwargs={'post_id':
-                    f'{cls.post.id}'}): 'posts/create_post.html',
+            reverse('posts:group_list',
+                    kwargs={'slug': f'{cls.group.slug}'}):
+                        'posts/group_list.html',
+            reverse('posts:profile',
+                    kwargs={'username': f'{cls.author.username}'}):
+                        'posts/profile.html',
+            reverse('posts:post_detail',
+                    kwargs={'post_id': f'{cls.post.id}'}):
+                        'posts/post_detail.html',
+            reverse('posts:post_edit',
+                    kwargs={'post_id': f'{cls.post.id}'}):
+                        'posts/create_post.html',
         }
 
         cls.form_fields = {
